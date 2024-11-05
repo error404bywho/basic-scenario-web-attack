@@ -1,20 +1,21 @@
 
 <?php 
-
-include 'php/conn.php';
+session_start();
+include 'conn.php';
 if(isset($_POST['student_id']) && isset($_POST['password'])){
 $id =   $_POST['student_id'];
 $password = $_POST['password'];
 $query = "SELECT * FROM account WHERE id = '$id' AND password = '$password'";
 $result = mysqli_query($conn,$query);
+
 $row = mysqli_fetch_array($result);
 if(!isset($row)){
     echo '<div><div class="error-message">invalid login, please try again</div></div>';
    // header("Location: admin.php");
 }
 else {
-    header("Location : profile.php?id=".$id);
-    exit();
+    $_SESSION['id_session'] = $id;
+    echo '<meta http-equiv="refresh" content="0;url=Profile.php?id='. $id . '"';
 }
     }
 ?>
@@ -34,7 +35,7 @@ else {
     <main>
 
         <div class="login-container">
-            <form action="login.php" method="POST" class="login-form">
+            <form method="POST" class="login-form">
 <h2>Đăng Nhập</h2>
 <div class="form-group">
     <label for="student_id">Tên đăng nhập</label>
