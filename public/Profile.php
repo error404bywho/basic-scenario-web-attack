@@ -33,7 +33,8 @@ require('conn.php');
   <div class="container">
   <aside class="sidebar">
   <div class="profile">
-    <img src="uploads/23CE.B030.jpg" alt="Profile Picture" class="profile-pic">
+  <?php echo '<img src="'. "uploads/".$id.".png" .'" alt="Profile Picture" class="profile-pic">'; ?> 
+ 
     <?php
  $id = $_GET['id'];
       $QC_school_info = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'school_info'";
@@ -45,33 +46,36 @@ require('conn.php');
       $Column_name = $result_column->fetch_array();
       $Row_value = $result_row->fetch_array();
 
-      echo "<h2>" . $Row_value[1] . "</h2>";
-      echo "<p>MSV " . $Row_value[0] . " | Lớp " . $Row_value[2] . " | Course " . $Row_value[5] . "</p>";
-      echo "<p>Major: " . $Row_value[3] . "</p>";
-      echo "<p>Faculty: " . $Row_value[6] . "</p>";
+      $fullname = $Row_value[1];
+      $msv      = $Row_value[0];
+
+      echo "<h2>" . $Row_value[1] . "&#x1F393;</h2>";
+      echo "<p style=".'"font-size: 13px;"' .">MSV " . $Row_value[0] . " | Lớp " . $Row_value[2] . " | Course " . $Row_value[5] . "</p>";
+      echo "<p style=".'"font-size: 13px;"' .">Major: " . $Row_value[3] . "</p>";
+      echo "<p style=".'"font-size: 13px;"' .">Faculty: " . $Row_value[6] . "</p>";
        
     ?>
-    <a href=""><button class="edit-btn">Sửa Hồ Sơ</button></a>
-    <a href=""><button class="edit-btn">Xuất Lý Lịch</button></a>
+    <a href=""><button class="edit-btn">&#x1F527; Edit Profile </button></a>
+    <a href=""><button class="edit-btn">&#x1F5A8; Export profile </button></a>
   </div>
 
   <nav class="menu">
     <ul>
-      <li><a href="#personal-info">Thông Tin Cá nhân</a></li>
-      <li><a href="#address-grid">Thường Trú Và Địa Chỉ</a></li>
-      <li><a href="#contact-info">Thông tin liên hệ</a></li>
+      <li><a href="#personal-info">&#x1F471; Personal </a></li>
+      <li><a href="#address-grid">&#x1F3E0; Address</a></li>
+      <li><a href="#contact-info">&#x1F4DE;Contact</a></li>
     </ul>
   
   </nav>  
   <!-- Thêm khoảng trống trước nút Logout -->
   <hr style="width: 80%;">
   <br>
- <a href="login.php"> <button class="logout-btn">&#x1F511; Logout</button></a>
+ <a href="login.php"> <button class="logout-btn">&#x1F511; Logout </button></a>
 </aside>
     <!-- =================================TOP-BAR============================ -->
     <div class="unique-top-right-bar">
   <div class="unique-menu-icon">
-    <div class="unique-bar"></div>
+    <div class="unique-bar"><a href="" class="unique-bar">&#x2302;</a></div>
     <div class="unique-bar"></div>
     <div class="unique-bar"></div>
   </div>
@@ -79,14 +83,16 @@ require('conn.php');
     Học kỳ 1 - 2024-2025
   </div>
   <div class="unique-user-info">
-    <span>Lê Đình Vũ - 23CE.B030</span>
-    <img src="path/to/avatar.jpg" alt="Avatar" class="unique-avatar">
+    
+   <?php echo "<span>". $fullname . " - " . $msv ."</span>"; ?>
+   
+    <?php echo '<img src="'. "uploads/".$id.".png" .'" alt="Avatar" class="unique-avatar">'; ?> 
   </div>
 </div>
     <!-- ======================================================================= -->
     <main class="content" >
       <section class="personal-info" id="personal-info" >
-        <h3>Sơ Yếu Lý Lịch</h3>
+        <h3>Profile</h3>
         <div class="info-grid" >
         <!-- =====================school-info========================= -->
         <?php
@@ -117,7 +123,7 @@ require('conn.php');
 
     <main class="content">
       <section class="personal-info">
-        <h3>Thông tin cá nhân</h3>
+        <h3>Personal</h3>
         <div class="info-grid">
         <!-- ====================private-info============================ -->
         <?php
@@ -151,7 +157,7 @@ require('conn.php');
 
       
       <section class="address-info" >
-        <h3>Thường trú và địa chỉ</h3>
+        <h3>Address</h3>
         <div class="info-grid" id="address-grid">
           <!-- ==================address-info============================== -->
           <?php
@@ -177,7 +183,7 @@ require('conn.php');
       </section>
 
       <section class="contact-info" >
-        <h3>Thông tin liên hệ</h3>
+        <h3>Contact</h3>
         <div class="info-grid" id="contact-info">
           <!-- ==================contact-info============================= -->
           <?php
@@ -191,14 +197,16 @@ require('conn.php');
           $Column_name=$result_column->fetch_array(); //phần tử đầu tiên của cột luôn là id nên loại bỏ
           
           $Row_value=$result_row->fetch_array(); //row chỉ trả về 1 hàng vì select theo id
+          
           $i=1;
           while($Column_name=$result_column->fetch_array() ){
             echo "<div><strong>"."$Column_name[0] : "."</strong>"."$Row_value[$i]"."</div>";
+            if($i==3) break;
             $i++;
-            if($i==4) break;
           }
+          $i++;
           $Column_name=$result_column->fetch_array();
-          echo "<div><strong>"."$Column_name[4] : "."</strong>".'<a href="'."$Row_value[$i]".'"></a>'."</div>";
+          echo "<div><strong>"."$Column_name[0] : "."</strong>".'<a href="'."$Row_value[$i]".'"'.'target="_blank"'.'>https://www.facebook.com/profile.php?id=100027192362010</a>'."</div>";
             ?>
         <!-- <div><strong>Email khác:</strong> connguathanhtroia@gmail.com</div>
           <div><strong>Điện thoại:</strong> 0764524805</div>

@@ -270,7 +270,17 @@ footer {
   border-radius: 50%;
   object-fit: cover;
 }
+.unique-bar {
+  text-decoration: none; /* Bỏ gạch chân */
+  color: black; /* Màu mặc định đen */
+  cursor: pointer;
+  font-size: 30px; /* Tăng kích thước biểu tượng */
+  transition: color 0.2s ease; /* Hiệu ứng chuyển màu */
+}
 
+.unique-bar:hover {
+  color: rgb(3, 246, 76); /* Màu xanh khi hover */
+}
 
 /* Tạo khoảng trống cho nội dung chính bên dưới thanh bar */
 .content {
