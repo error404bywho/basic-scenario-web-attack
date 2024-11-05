@@ -26,15 +26,22 @@ require('conn.php');
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Page</title>
-  <link rel="stylesheet" href="assets/css/profile.css">
+  <link rel="stylesheet" href="assets/css/edit.css">
 </head>
 <body>
   
   <div class="container">
   <aside class="sidebar">
   <div class="profile">
-  <?php echo '<img src="'. "uploads/".$id.".png" .'" alt="Profile Picture" class="profile-pic">'; ?> 
- 
+    <!-- ===============================UPLOADS============================ -->
+  <form action="upload.php" method="post" enctype="multipart/form-data">
+    <?php echo '<label for="profile-pic-upload" class="profile-pic-label"><img src="uploads/' . $id . '.png" alt="Profile Picture" class="profile-pic"></label>'; ?>
+    <input type="file" id="profile-pic-upload" name="profile-pic-upload" accept="image/*" style="display: none;" onchange="this.form.submit()">
+    <input type="hidden" name="id" value="<?php echo $id; ?>">
+    
+</form>
+  <!-- ===============================UPLOADS============================ -->
+
     <?php
  $id = $_GET['id'];
       $QC_school_info = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'school_info'";
@@ -50,28 +57,27 @@ require('conn.php');
       $msv      = $Row_value[0];
 
       echo "<h2>" . $Row_value[1] . "&#x1F393;</h2>";
-      echo "<p style=".'"font-size: 13px;"' .">MSV " . $Row_value[0] . " | Lớp " . $Row_value[2] . " | Course " . $Row_value[5] . "</p>";
-      echo "<p style=".'"font-size: 13px;"' .">Major: " . $Row_value[3] . "</p>";
-      echo "<p style=".'"font-size: 13px;"' .">Faculty: " . $Row_value[6] . "</p>";
+     
+      echo "<hr>";
+      echo "<p style=".'"font-size: 14px;"' .">MSV: " . $Row_value[0] . "</p>";
+      echo "<br>";echo "<hr>";
+      echo "<p style=".'"font-size: 14px;"' .">Class: " . $Row_value[2]. "</p>";
+      echo "<br>";echo "<hr>";
+      echo "<p style=".'"font-size: 14px;"' .">Course: " . $Row_value[5] . "</p>";
+      echo "<br>";echo "<hr>";
+      echo "<p style=".'"font-size: 14px;"' .">Major: " . $Row_value[3] . "</p>";
+      echo "<br>";echo "<hr>";
+      echo "<p style=".'"font-size: 14px;"' .">Faculty: " . $Row_value[6] . "</p>";
        
     ?>
-    <?php echo '<a href="edit.php?id=' . $id . '"><button class="edit-btn">&#x1F527; Edit Profile </button></a>';?>
-
-    <a href=""><button class="edit-btn">&#x1F5A8; Export profile </button></a>
+    
+    <hr style="margin-top: 40px;color : #c6c3c3">
+  <?php
+  echo '<a href="Profile.php?id='.$_GET['id'].'"><button class="edit-btn">&#x2B90; Back </button></a>';
+  
+  ?>
   </div>
 
-  <nav class="menu">
-    <ul>
-      <li><a href="#personal-info">&#x1F471; Personal </a></li>
-      <li><a href="#address-grid">&#x1F3E0; Address</a></li>
-      <li><a href="#contact-info">&#x1F4DE;Contact</a></li>
-    </ul>
-  
-  </nav>  
-  <!-- Thêm khoảng trống trước nút Logout -->
-  <hr style="width: 80%;">
-  <br>
- <a href="login.php"> <button class="logout-btn">&#x1F511; Logout </button></a>
 </aside>
     <!-- =================================TOP-BAR============================ -->
     <div class="unique-top-right-bar">
@@ -109,7 +115,9 @@ require('conn.php');
           $Row_value=$result_row->fetch_array(); //row chỉ trả về 1 hàng vì select theo id
           $i=1;
           while($Column_name=$result_column->fetch_array() ){
-            echo "<div><strong>"."$Column_name[0] : "."</strong>"."$Row_value[$i]"."</div>";
+            echo "<div><strong>"."$Column_name[0] : "."</strong>"; 
+            echo "<br>";
+            echo '<input style=" background-color: #c6c3c3; cursor :not-allowed;" disabled type="text" value="'.$Row_value[$i].'">'."</div>";
             $i++;
           }
             ?>
@@ -124,6 +132,7 @@ require('conn.php');
 
     <main class="content">
       <section class="personal-info">
+
         <h3>Personal</h3>
         <div class="info-grid">
         <!-- ====================private-info============================ -->
@@ -140,7 +149,9 @@ require('conn.php');
           $Row_value=$result_row->fetch_array(); //row chỉ trả về 1 hàng vì select theo id
           $i=1;
           while($Column_name=$result_column->fetch_array() ){
-            echo "<div><strong>"."$Column_name[0] : "."</strong>"."$Row_value[$i]"."</div>";
+            echo "<div><strong>"."$Column_name[0] : "."</strong>"; 
+            echo "<br>";
+            echo '<input type="text" value="'.$Row_value[$i].'">'."</div>";
             $i++;
           }
             ?>
@@ -174,7 +185,9 @@ require('conn.php');
           $Row_value=$result_row->fetch_array(); //row chỉ trả về 1 hàng vì select theo id
           $i=1;
           while($Column_name=$result_column->fetch_array() ){
-            echo "<div><strong>"."$Column_name[0] : "."</strong>"."$Row_value[$i]"."</div>";
+            echo "<div><strong>"."$Column_name[0] : "."</strong>";
+            echo "<br>";
+            echo '<input type="text" value="'.$Row_value[$i].'">'."</div>";
             $i++;
           }
             ?>
@@ -201,14 +214,15 @@ require('conn.php');
           
           $i=1;
           while($Column_name=$result_column->fetch_array() ){
-            echo "<div><strong>"."$Column_name[0] : "."</strong>"."$Row_value[$i]"."</div>";
-            if($i==3) break;
+            echo "<div><strong>"."$Column_name[0] : "."</strong>";
+            echo "<br>";
+            echo '<input type="text" value="'.$Row_value[$i].'">'."</div>";
             $i++;
           }
-          $i++;
-          $Column_name=$result_column->fetch_array();
-          echo "<div><strong>"."$Column_name[0] : "."</strong>".'<a href="'."$Row_value[$i]".'"'.'target="_blank"'.'>https://www.facebook.com/profile.php?id=100027192362010</a>'."</div>";
-            ?>
+         
+        //   $Column_name=$result_column->fetch_array();
+        //   echo "<div><strong>"."$Column_name[0] : "."</strong>".'<a href="'."$Row_value[$i]".'"'.'target="_blank"'.'>https://www.facebook.com/profile.php?id=100027192362010</a>'."</div>";
+             ?>
         <!-- <div><strong>Email khác:</strong> connguathanhtroia@gmail.com</div>
           <div><strong>Điện thoại:</strong> 0764524805</div>
           <div><strong>Facebook:</strong> -</div>
