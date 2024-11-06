@@ -91,8 +91,10 @@ require('conn.php');
   </div>
 </div>
     <!-- ======================================================================= -->
-    <main class="content" >
-      <section class="personal-info" id="personal-info" >
+      
+
+    <main class="content">
+    <section class="personal-info" id="personal-info" >
         <h3>Profile</h3>
         <div class="info-grid" >
         <!-- =====================school-info========================= -->
@@ -121,8 +123,6 @@ require('conn.php');
         <!-- =========================================================== -->
         </div>
       </section>
-
-    <main class="content">
       <section class="personal-info">
         <h3>Personal</h3>
         <div class="info-grid">

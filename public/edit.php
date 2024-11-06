@@ -73,7 +73,7 @@ require('conn.php');
     
     <hr style="margin-top: 40px;color : #c6c3c3">
   <?php
-  echo '<a href="Profile.php?id='.$_GET['id'].'"><button class="edit-btn">&#x2B90; Back </button></a>';
+  echo '<a href="Profile.php?id='.$_GET['id'].'"><button class="logout-btn">&#x2B90; Back </button></a>';
   
   ?>
   </div>
@@ -97,11 +97,18 @@ require('conn.php');
   </div>
 </div>
     <!-- ======================================================================= -->
-    <main class="content" >
-      <section class="personal-info" id="personal-info" >
+   
+    
+
+    <main class="content">
+    <section class="personal-info" id="personal-info" >
         <h3>Profile</h3>
         <div class="info-grid" >
         <!-- =====================school-info========================= -->
+        
+  <form>
+    <table>
+      
         <?php
           $QC_school_info="SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'school_info'";
           $QR_school_info="SELECT * FROM school_info WHERE ID = '$id'";
@@ -113,14 +120,22 @@ require('conn.php');
           $Column_name=$result_column->fetch_array(); //phần tử đầu tiên của cột luôn là id nên loại bỏ
           
           $Row_value=$result_row->fetch_array(); //row chỉ trả về 1 hàng vì select theo id
-          $i=1;
+          $i=1; 
+        
           while($Column_name=$result_column->fetch_array() ){
-            echo "<div><strong>"."$Column_name[0] : "."</strong>"; 
+            echo ($i % 2 == 1 ) ? '<tr>' : '';
+            echo '<td style="padding-left: 40px; padding-right: 5px;"><div><strong>'."$Column_name[0] : "."</strong>"; 
             echo "<br>";
-            echo '<input style=" background-color: #c6c3c3; cursor :not-allowed;" disabled type="text" value="'.$Row_value[$i].'">'."</div>";
+            echo '<input style=" background-color: #c6c3c3; cursor :not-allowed;" disabled
+             type="text" value="'.$Row_value[$i].'">'."</div></td>";
+            echo ($i % 2 == 0 ) ? '</tr>' : '';
             $i++;
+           
           }
             ?>
+    </table>
+  </form>
+        
         <!-- <div><strong>Họ và tên:</strong> Lê Đình Vũ</div>
           <div><strong>Lớp :</strong>23CE.B030 </div>
           <div><strong>Khóa :</strong> 2023-2027</div>
@@ -129,13 +144,16 @@ require('conn.php');
         <!-- =========================================================== -->
         </div>
       </section>
+      <!-- -->
 
-    <main class="content">
       <section class="personal-info">
 
         <h3>Personal</h3>
         <div class="info-grid">
         <!-- ====================private-info============================ -->
+   <form method="GET">
+      <table>
+      
         <?php
           $QC_private_info="SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'private_info'";
           $QR_private_info="SELECT * FROM private_info WHERE ID = '$id'";
@@ -147,14 +165,29 @@ require('conn.php');
           $Column_name=$result_column->fetch_array(); //phần tử đầu tiên của cột luôn là id nên loại bỏ
           
           $Row_value=$result_row->fetch_array(); //row chỉ trả về 1 hàng vì select theo id
-          $i=1;
+          $i=1; 
+        
           while($Column_name=$result_column->fetch_array() ){
-            echo "<div><strong>"."$Column_name[0] : "."</strong>"; 
+            echo ($i % 2 == 1 ) ? '<tr>' : '';
+            echo '<td style="padding-left: 40px; padding-right: 5px;"><div><strong>'."$Column_name[0] : "."</strong>"; 
             echo "<br>";
-            echo '<input type="text" value="'.$Row_value[$i].'">'."</div>";
+            echo '<input type="text" value="'.$Row_value[$i].'">'."</div></td>";
+            echo ($i % 2 == 0 ) ? '</tr>' : '';
             $i++;
+           
           }
             ?>
+    </table>
+    <input type="sbumit" name="update_personal_info" id="update_personal_info" 
+        style="background-color: #4CAF50; color: white; border: none;  caret-color: #4CAF50;
+        padding: 15px 20px 15px 20px ; 
+         margin-left: 45%; margin-top : 30px;
+        width : 130px; text-align: center; text-decoration: none; 
+        display: inline-block; font-size: 16px; 
+        cursor: pointer; border-radius: 5px;" 
+          value="&#x1F4BE; Update">
+         
+  </form>
 
         <!-- <div><strong>Họ và tên:</strong> Lê Đình Vũ</div>
           <div><strong>Ngày sinh:</strong> 2005-03-11</div>
@@ -167,12 +200,16 @@ require('conn.php');
         </div>
       </section>
 
-      
+
       <section class="address-info" >
         <h3>Address</h3>
         <div class="info-grid" id="address-grid">
           <!-- ==================address-info============================== -->
-          <?php
+         
+  <form method="GET">
+      <table>
+      
+        <?php
           $QC_address_info="SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'address_info'";
           $QR_address_info="SELECT * FROM address_info WHERE ID = '$id'";
 
@@ -183,24 +220,41 @@ require('conn.php');
           $Column_name=$result_column->fetch_array(); //phần tử đầu tiên của cột luôn là id nên loại bỏ
           
           $Row_value=$result_row->fetch_array(); //row chỉ trả về 1 hàng vì select theo id
-          $i=1;
+          $i=1; 
+        
           while($Column_name=$result_column->fetch_array() ){
-            echo "<div><strong>"."$Column_name[0] : "."</strong>";
+            echo ($i % 2 == 1 ) ? '<tr>' : '';
+            echo '<td style="padding-left: 40px; padding-right: 5px;"><div><strong>'."$Column_name[0] : "."</strong>"; 
             echo "<br>";
-            echo '<input type="text" value="'.$Row_value[$i].'">'."</div>";
+            echo '<input type="text" value="'.$Row_value[$i].'">'."</div></td>";
+            echo ($i % 2 == 0 ) ? '</tr>' : '';
             $i++;
+           
           }
             ?>
-          
+    </table>
+    <input type="sbumit" name="update_adress_info" id="update_adress_info" 
+        style="background-color: #4CAF50; color: white; border: none;  caret-color: #4CAF50;
+        padding: 15px 20px 15px 20px ; 
+         margin-left: 45%; margin-top : 30px;
+        width : 130px; text-align: center; text-decoration: none; 
+        display: inline-block; font-size: 16px; 
+        cursor: pointer; border-radius: 5px;" 
+          value="&#x1F4BE; Update">
+         
+  </form>
         <!-- =========================================================== -->
         </div>
       </section>
-
+  
       <section class="contact-info" >
         <h3>Contact</h3>
         <div class="info-grid" id="contact-info">
           <!-- ==================contact-info============================= -->
-          <?php
+  <form method="GET">
+      <table>
+      
+        <?php
           $QC_contact_info="SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'contact_info'";
           $QR_contact_info="SELECT * FROM contact_info WHERE ID = '$id'";
 
@@ -211,22 +265,38 @@ require('conn.php');
           $Column_name=$result_column->fetch_array(); //phần tử đầu tiên của cột luôn là id nên loại bỏ
           
           $Row_value=$result_row->fetch_array(); //row chỉ trả về 1 hàng vì select theo id
-          
-          $i=1;
+          $i=1; 
+        
           while($Column_name=$result_column->fetch_array() ){
-            echo "<div><strong>"."$Column_name[0] : "."</strong>";
+            echo ($i % 2 == 1 ) ? '<tr>' : '';
+            echo '<td style="padding-left: 40px; padding-right: 5px;"><div><strong>'."$Column_name[0] : "."</strong>"; 
             echo "<br>";
-            echo '<input type="text" value="'.$Row_value[$i].'">'."</div>";
+            echo '<input type="text" value="'.$Row_value[$i].'">'."</div></td>";
+            echo ($i % 2 == 0 ) ? '</tr>' : '';
             $i++;
+           
           }
+            ?>
+    </table>
+    <input type="sbumit" name="update_adress_info" id="update_adress_info" 
+        style="background-color: #4CAF50; color: white; border: none;  caret-color: #4CAF50;
+        padding: 15px 20px 15px 20px ; 
+         margin-left: 45%; margin-top : 30px;
+        width : 130px; text-align: center; text-decoration: none; 
+        display: inline-block; font-size: 16px; 
+        cursor: pointer; border-radius: 5px;" 
+          value="&#x1F4BE; Update">
          
-        //   $Column_name=$result_column->fetch_array();
+  </form>
+        <!-- 
+         //   $Column_name=$result_column->fetch_array();
         //   echo "<div><strong>"."$Column_name[0] : "."</strong>".'<a href="'."$Row_value[$i]".'"'.'target="_blank"'.'>https://www.facebook.com/profile.php?id=100027192362010</a>'."</div>";
-             ?>
-        <!-- <div><strong>Email khác:</strong> connguathanhtroia@gmail.com</div>
+         
+        <div><strong>Email khác:</strong> connguathanhtroia@gmail.com</div>
           <div><strong>Điện thoại:</strong> 0764524805</div>
           <div><strong>Facebook:</strong> -</div>
-          <div><strong>Zalo:</strong> 0764524805</div> -->
+          <div><strong>Zalo:</strong> 0764524805</div> 
+          -->
         <!-- =========================================================== -->
         </div>
       </section>
