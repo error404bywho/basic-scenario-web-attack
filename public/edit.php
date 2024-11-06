@@ -1,4 +1,4 @@
-<!-- =========================PROFILE=============================== -->
+<!-- ===========================================PROFILE================================================= -->
 <?php
 session_start();
 if(!isset($_SESSION['id_session'])){
@@ -18,7 +18,7 @@ require('conn.php');
 */
  
 ?>
-<!-- =========================PROFILE=============================== -->
+<!-- ===========================================PROFILE================================================= -->
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -33,14 +33,13 @@ require('conn.php');
   <div class="container">
   <aside class="sidebar">
   <div class="profile">
-    <!-- ===============================UPLOADS============================ -->
-  <form action="upload.php" method="post" enctype="multipart/form-data">
+    <!-- =================================================UPLOADS============================================== -->
+    <form method="post" enctype="multipart/form-data">
     <?php echo '<label for="profile-pic-upload" class="profile-pic-label"><img src="uploads/' . $id . '.png" alt="Profile Picture" class="profile-pic"></label>'; ?>
     <input type="file" id="profile-pic-upload" name="profile-pic-upload" accept="image/*" style="display: none;" onchange="this.form.submit()">
     <input type="hidden" name="id" value="<?php echo $id; ?>">
-    
 </form>
-  <!-- ===============================UPLOADS============================ -->
+  <!-- =================================================UPLOADS============================================== -->
 
     <?php
  $id = $_GET['id'];
@@ -79,7 +78,7 @@ require('conn.php');
   </div>
 
 </aside>
-    <!-- =================================TOP-BAR============================ -->
+    <!-- ===================================================TOP-BAR============================================== -->
     <div class="unique-top-right-bar">
   <div class="unique-menu-icon">
     <div class="unique-bar"><a href="dashboard.php?id=" class="unique-bar">&#x2302;</a></div>
@@ -96,7 +95,7 @@ require('conn.php');
     <?php echo '<img src="'. "uploads/".$id.".png" .'" alt="Avatar" class="unique-avatar">'; ?> 
   </div>
 </div>
-    <!-- ======================================================================= -->
+    <!-- ============================================================================================================================= -->
    
     
 
@@ -104,7 +103,7 @@ require('conn.php');
     <section class="personal-info" id="personal-info" >
         <h3>Profile</h3>
         <div class="info-grid" >
-        <!-- =====================school-info========================= -->
+        <!-- =======================================school-info=========================================== -->
         
   <form>
     <table>
@@ -141,7 +140,7 @@ require('conn.php');
           <div><strong>Khóa :</strong> 2023-2027</div>
           <div><strong>Ngành : </strong> Thiết Kế Vi Mạch Bán Dẫn (Cử Nhân) </div>
           <div><strong>Khoa : </strong> Kỹ Thuật Máy Tính và Điện Tử</div> -->
-        <!-- =========================================================== -->
+        <!-- ================================================================================================================= -->
         </div>
       </section>
       <!-- -->
@@ -150,8 +149,8 @@ require('conn.php');
 
         <h3>Personal</h3>
         <div class="info-grid">
-        <!-- ====================private-info============================ -->
-   <form method="GET">
+        <!-- ======================================private-info============================================== -->
+        <form method="GET">
       <table>
       
         <?php
@@ -171,23 +170,16 @@ require('conn.php');
             echo ($i % 2 == 1 ) ? '<tr>' : '';
             echo '<td style="padding-left: 40px; padding-right: 5px;"><div><strong>'."$Column_name[0] : "."</strong>"; 
             echo "<br>";
-            echo '<input type="text" value="'.$Row_value[$i].'">'."</div></td>";
+            echo '<input style=" background-color: #c6c3c3; cursor :not-allowed;" disabled type="text" value="'.$Row_value[$i].'">'."</div></td>";
             echo ($i % 2 == 0 ) ? '</tr>' : '';
             $i++;
            
           }
             ?>
     </table>
-    <input type="sbumit" name="update_personal_info" id="update_personal_info" 
-        style="background-color: #4CAF50; color: white; border: none;  caret-color: #4CAF50;
-        padding: 15px 20px 15px 20px ; 
-         margin-left: 45%; margin-top : 30px;
-        width : 130px; text-align: center; text-decoration: none; 
-        display: inline-block; font-size: 16px; 
-        cursor: pointer; border-radius: 5px;" 
-          value="&#x1F4BE; Update">
-         
+    
   </form>
+          
 
         <!-- <div><strong>Họ và tên:</strong> Lê Đình Vũ</div>
           <div><strong>Ngày sinh:</strong> 2005-03-11</div>
@@ -196,7 +188,7 @@ require('conn.php');
           <div><strong>Nơi cấp:</strong> Đà Nẵng</div>
           <div><strong>Ngày cấp:</strong> 2023-06-22</div>
           <div><strong>Tôn giáo:</strong> Không</div> -->
-        <!-- =========================================================== -->
+        <!-- ================================================================================================================= -->
         </div>
       </section>
 
@@ -204,9 +196,9 @@ require('conn.php');
       <section class="address-info" >
         <h3>Address</h3>
         <div class="info-grid" id="address-grid">
-          <!-- ==================address-info============================== -->
+          <!-- ====================================address-info================================================ -->
          
-  <form method="GET">
+  <form method="POST">
       <table>
       
         <?php
@@ -226,32 +218,68 @@ require('conn.php');
             echo ($i % 2 == 1 ) ? '<tr>' : '';
             echo '<td style="padding-left: 40px; padding-right: 5px;"><div><strong>'."$Column_name[0] : "."</strong>"; 
             echo "<br>";
-            echo '<input type="text" value="'.$Row_value[$i].'">'."</div></td>";
+            echo '<input required type="text" name="address[]" value="'.$Row_value[$i].'">'."</div></td>";
             echo ($i % 2 == 0 ) ? '</tr>' : '';
             $i++;
            
           }
             ?>
     </table>
-    <input type="sbumit" name="update_adress_info" id="update_adress_info" 
+          <?php 
+          if(isset($_POST['update_address_info']) ){
+            echo "<div style='color : #1dff04;
+             margin-top : 20px; margin-left : 45%'
+            >Cập nhật thành công!</div>";
+            //echo '<meta http-equiv="refresh" content="0;url=edit.php?id='.$id.'">';
+          }
+          ?>
+
+    <input type="submit" name='update_address_info' id='update_address_info' 
         style="background-color: #4CAF50; color: white; border: none;  caret-color: #4CAF50;
         padding: 15px 20px 15px 20px ; 
-         margin-left: 45%; margin-top : 30px;
+         margin-left: 45%; margin-top :10px;
         width : 130px; text-align: center; text-decoration: none; 
         display: inline-block; font-size: 16px; 
         cursor: pointer; border-radius: 5px;" 
           value="&#x1F4BE; Update">
-         
   </form>
-        <!-- =========================================================== -->
+          <?php
+          if(isset($_POST['update_address_info'])){
+
+            //prepare columns's name
+            $QC_address_info="SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'address_info'";
+            $result_column = mysqli_execute_query($conn,$QC_address_info);
+            $Column_name=$result_column->fetch_array(); //phần tử đầu tiên của cột luôn là id nên loại bỏ
+            
+            $address = $_POST['address']; //lay ra gia tri duoc gui - day la 1 mang 
+            $query =' UPDATE address_info SET '; 
+            /* 
+            '`Full Address` = '.'123123123', 
+            `City` = 'ĐÀ NẴNG', 
+            `District` = 'THANH KHÊ', 
+            `Ward` = 'THẠCH GIÁN' 
+            WHERE `address_info`.`ID` = '24GIT202'
+            */
+            $Column_Value = [];
+            foreach($address as $Column => $Value){
+              $Column_name=$result_column->fetch_array();
+             $Column_Value[] = " `$Column_name[0]`  =  '$Value' ";
+            }
+            $query .= implode(',',$Column_Value) . " WHERE `ID` = '$id' ;" ;
+            $result = mysqli_execute_query($conn, $query);
+            
+          }
+          ?> 
+        <!-- ================================================================================================================= -->
         </div>
+        
       </section>
   
       <section class="contact-info" >
         <h3>Contact</h3>
         <div class="info-grid" id="contact-info">
-          <!-- ==================contact-info============================= -->
-  <form method="GET">
+          <!-- ====================================contact-info=============================================== -->
+  <form method="POST">
       <table>
       
         <?php
@@ -270,24 +298,54 @@ require('conn.php');
           while($Column_name=$result_column->fetch_array() ){
             echo ($i % 2 == 1 ) ? '<tr>' : '';
             echo '<td style="padding-left: 40px; padding-right: 5px;"><div><strong>'."$Column_name[0] : "."</strong>"; 
-            echo "<br>";
-            echo '<input type="text" value="'.$Row_value[$i].'">'."</div></td>";
+            echo "<br>"; 
+            echo '<input require type="text" name="contact[]" value="'.$Row_value[$i].'">'."</div></td>";
             echo ($i % 2 == 0 ) ? '</tr>' : '';
             $i++;
-           
           }
             ?>
     </table>
-    <input type="sbumit" name="update_adress_info" id="update_adress_info" 
+          <?php 
+          if(isset($_POST['update_contact_info']) ){
+            echo "<div style='color : #1dff04;
+             margin-top : 20px; margin-left : 45%'
+            >Cập nhật thành công!</div>";
+            //echo '<meta http-equiv="refresh" content="0;url=edit.php?id='.$id.'">';
+          }
+          ?>
+
+    <input type="submit" name='update_contact_info' id='update_address_info' 
         style="background-color: #4CAF50; color: white; border: none;  caret-color: #4CAF50;
         padding: 15px 20px 15px 20px ; 
-         margin-left: 45%; margin-top : 30px;
+         margin-left: 45%; margin-top : 10px;
         width : 130px; text-align: center; text-decoration: none; 
         display: inline-block; font-size: 16px; 
         cursor: pointer; border-radius: 5px;" 
           value="&#x1F4BE; Update">
          
   </form>
+      <?php
+          if(isset($_POST['update_contact_info'])){
+
+            //prepare columns's name
+            $QC_contact_info="SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'contact_info'";
+            $result_column = mysqli_execute_query($conn,$QC_contact_info);
+            $Column_name=$result_column->fetch_array(); //phần tử đầu tiên của cột luôn là id nên loại bỏ
+            
+            $contact= $_POST['contact']; //lay ra gia tri duoc gui - day la 1 mang 
+            $query =' UPDATE contact_info SET '; 
+            
+            $Column_Value = [];
+            foreach($contact as $Column => $Value){
+              $Column_name=$result_column->fetch_array();
+             $Column_Value[] = " `$Column_name[0]`  =  '$Value' ";
+            }
+            $query .= implode(',',$Column_Value) . " WHERE `ID` = '$id' ;" ;
+            $result = mysqli_execute_query($conn, $query);
+            
+          }
+          ?> 
+  
         <!-- 
          //   $Column_name=$result_column->fetch_array();
         //   echo "<div><strong>"."$Column_name[0] : "."</strong>".'<a href="'."$Row_value[$i]".'"'.'target="_blank"'.'>https://www.facebook.com/profile.php?id=100027192362010</a>'."</div>";
@@ -297,7 +355,7 @@ require('conn.php');
           <div><strong>Facebook:</strong> -</div>
           <div><strong>Zalo:</strong> 0764524805</div> 
           -->
-        <!-- =========================================================== -->
+        <!-- ================================================================================================================= -->
         </div>
       </section>
 

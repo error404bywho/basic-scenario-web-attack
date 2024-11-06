@@ -55,9 +55,10 @@ require('conn.php');
       echo "<p style=".'"font-size: 13px;"' .">Faculty: " . $Row_value[6] . "</p>";
        
     ?>
+     <a href="dashboard.php"><button class="edit-btn">&#x1F3E1; Dash Board </button></a>
     <?php echo '<a href="edit.php?id=' . $id . '"><button class="edit-btn">&#x1F527; Edit Profile </button></a>';?>
 
-    <a href=""><button class="edit-btn">&#x1F5A8; Export profile </button></a>
+   
   </div>
 
   <nav class="menu">
