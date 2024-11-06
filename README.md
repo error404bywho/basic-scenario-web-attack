@@ -1,4 +1,4 @@
-# Student Profile Website - Security Overview
+# Student Profile Website
 
 ## Introduction
 
