@@ -33,12 +33,54 @@ require('conn.php');
   <div class="container">
   <aside class="sidebar">
   <div class="profile">
-    <!-- =================================================UPLOADS============================================== -->
+   
     <form method="post" enctype="multipart/form-data">
-    <?php echo '<label for="profile-pic-upload" class="profile-pic-label"><img src="uploads/' . $id . '.png" alt="Profile Picture" class="profile-pic"></label>'; ?>
-    <input type="file" id="profile-pic-upload" name="profile-pic-upload" accept="image/*" style="display: none;" onchange="this.form.submit()">
-    <input type="hidden" name="id" value="<?php echo $id; ?>">
-</form>
+    <?php
+    $path ='uploads/'.$id.'/';
+    if(!is_dir($path)){ //neu thu muc khong ton tai thi tao thu muc moi
+      mkdir($path); //tao thu muc uploads/24GIT202
+      touch($path . $id . '.png');
+    } 
+    $all_file = scandir($path);
+    $profile_path;
+    foreach($all_file as $f){ 
+      if ($f !== '.' && $f !== '..'){
+        $profile_path = $path . $f; 
+        break;
+      }
+    }
+    echo '<label for="profile-pic-upload" class="profile-pic-label"><img src="'.  $profile_path .'" alt="Profile Picture" class="profile-pic"></label>'; 
+    
+    ?>
+     <!-- =================================================UPLOADS============================================== -->
+    <input type="file" id='profile-pic-upload' name='profile-pic-upload' accept="image/*" style="display: none;" onchange="this.form.submit()">
+    </form>
+    <?php
+    $path ='uploads/'.$id.'/';
+    //check co phai file vua up len hay khong
+    if(isset($_FILES['profile-pic-upload']) && $_FILES['profile-pic-upload']['error'] === UPLOAD_ERR_OK){
+      //da ton tai thu muc uploads/24GIT202
+    
+      $all_file = scandir($path);
+      foreach($all_file as $f){
+        if($f !== '.' && $f !== '..' && file_exists( $path . $f ) && !is_dir( $path . $f )){
+          unlink($path . $f);
+        }
+      }
+        
+      
+    $TargetFile = $path .'/'.$_FILES['profile-pic-upload']['name'];
+      //tmp/upload/jlzhao --> uploads/24GIT202/zxc.php
+    if(move_uploaded_file($_FILES['profile-pic-upload']['tmp_name'], $TargetFile )){
+      echo "<div style='color : #1dff04;
+             margin-top : 10px; margin-left : 20px; margin-bottom: 20px'
+            >Cập nhật thành công!</div>";
+            header("Location: " . 'edit.php?id='.$id);
+    } else {
+       echo "DBRR";
+      }
+}
+    ?>
   <!-- =================================================UPLOADS============================================== -->
 
     <?php
@@ -91,8 +133,13 @@ require('conn.php');
   <div class="unique-user-info">
     
    <?php echo "<span>". $fullname . " - " . $msv ."</span>"; ?>
-   
-    <?php echo '<img src="'. "uploads/".$id.".png" .'" alt="Avatar" class="unique-avatar">'; ?> 
+
+       
+    <?php 
+    
+
+    echo '<img src="'. $profile_path .'" alt="Avatar" class="unique-avatar">';
+     ?> 
   </div>
 </div>
     <!-- ============================================================================================================================= -->
@@ -227,10 +274,10 @@ require('conn.php');
     </table>
           <?php 
           if(isset($_POST['update_address_info']) ){
-            echo "<div style='color : #1dff04;
-             margin-top : 20px; margin-left : 45%'
-            >Cập nhật thành công!</div>";
-            //echo '<meta http-equiv="refresh" content="0;url=edit.php?id='.$id.'">';
+            // echo "<div style='color : #1dff04;
+            //  margin-top : 20px; margin-left : 45%'
+            // >Cập nhật thành công!</div>";
+            echo '<meta http-equiv="refresh" content="0;url=edit.php?id='.$id.'">';
           }
           ?>
 
@@ -307,10 +354,10 @@ require('conn.php');
     </table>
           <?php 
           if(isset($_POST['update_contact_info']) ){
-            echo "<div style='color : #1dff04;
-             margin-top : 20px; margin-left : 45%'
-            >Cập nhật thành công!</div>";
-            //echo '<meta http-equiv="refresh" content="0;url=edit.php?id='.$id.'">';
+            // echo "<div style='color : #1dff04;
+            //  margin-top : 20px; margin-left : 45%'
+            // >Cập nhật thành công!</div>";
+            echo '<meta http-equiv="refresh" content="0;url=edit.php?id='.$id.'">';
           }
           ?>
 
