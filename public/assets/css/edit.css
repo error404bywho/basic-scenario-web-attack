@@ -1,5 +1,7 @@
 /* Importing Roboto font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
+
 
 /* Reset and Basic Setup */
 * {
@@ -9,7 +11,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family:'Open Sans', 'Roboto';
   background-color: #f4f6f9;
   color: #333;
   line-height: 1.6;

@@ -1,5 +1,6 @@
 /* Importing Roboto font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
 
 /* Reset and Basic Setup */
 * {
@@ -17,12 +18,13 @@ body {
 
 .container {
   display: flex;
-  height: 100vh;
+  height: 120vh;
 }
 
 /* Sidebar */
 .sidebar {
   width: 250px;
+ 
   background-color: #2d3e50;
   color: #fff;
   padding: 20px;
@@ -39,8 +41,8 @@ body {
 }
 
 .profile-pic {
-  width: 90px;
-  height: 90px;
+  width: 120px;
+  height: 140px;
   border-radius: 50%;
   margin-bottom: 15px;
   border: 3px solid #fff;
@@ -84,6 +86,7 @@ p {
 }
 
 /* Buttons Styling */
+/* Buttons Styling */
 .edit-btn, .logout-btn {
   width: 100%;
   padding: 15px; /* Tăng padding để nút lớn hơn */
@@ -105,7 +108,9 @@ p {
   color: white;
   padding-left: 60px;
   padding-right: 60px;
+  margin-top: -50px;
 }
+
 
 /* Main Content */
 .content {
@@ -184,9 +189,6 @@ footer {
   
   /* Biểu tượng menu bên trái */
  
-  
- 
-  
   /* Tiêu đề học kỳ ở giữa */
   .unique-title {
     font-size: 1em;

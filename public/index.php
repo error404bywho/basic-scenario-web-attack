@@ -7,15 +7,16 @@ $id =   $_POST['student_id'];
 $password = $_POST['password'];
 $query = "SELECT * FROM account WHERE id = '$id' AND password = '$password'";
 $result = mysqli_query($conn,$query);
-
 $row = mysqli_fetch_array($result);
 if(!isset($row)){
     echo '<div><div class="error-message">invalid login, please try again</div></div>';
    // header("Location: admin.php");
+   
 }
 else {
+    $id = $row['ID'];
     $_SESSION['id_session'] = $id;
-    echo '<meta http-equiv="refresh" content="0;url=Profile.php?id='. $id . '"';
+    echo '<meta http-equiv="refresh" content="0;url=Profile.php"';
 }
     }
 ?>
@@ -27,6 +28,8 @@ else {
     <title>Login Form</title>
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    
+
 </head>
 <body>
     <header>

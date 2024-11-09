@@ -2,21 +2,11 @@
 <?php
 session_start();
 if(!isset($_SESSION['id_session'])){
-  echo '<meta http-equiv="refresh" content="0;url=admin.php">';
+  echo '<meta http-equiv="refresh" content="0;url=index.php">';
   exit();
 }
-$id = $_GET['id'];
+$id = $_SESSION['id_session'];
 require('conn.php');
-
-/*
-1. Select all rows's name in db
-- address_info
-- contact_info
-- private_info
-- school_info
-2. Select all in4
-*/
- 
 ?>
 <!-- =========================PROFILE=============================== -->
 
@@ -27,16 +17,33 @@ require('conn.php');
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Page</title>
   <link rel="stylesheet" href="assets/css/profile.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
+
 </head>
 <body>
   
   <div class="container">
   <aside class="sidebar">
   <div class="profile">
-  <?php echo '<img src="'. "uploads/".$id.".png" .'" alt="Profile Picture" class="profile-pic">'; ?> 
+  <?php
+    $path ='uploads/'.$id.'/';
+    if(!is_dir($path)){ //neu thu muc khong ton tai thi tao thu muc moi
+      mkdir($path); //tao thu muc uploads/24GIT202
+      touch($path . $id . '.png');
+    } 
+    $all_file = scandir($path);
+    $profile_path;
+    foreach($all_file as $f){ 
+      if ($f !== '.' && $f !== '..'){
+        $profile_path = $path . $f; 
+        break;
+      }
+    }
+    echo '<label for="profile-pic-upload" class="profile-pic-label"><img src="'.  $profile_path .'" alt="Profile Picture" class="profile-pic"></label>'; 
+    ?>
  
     <?php
- $id = $_GET['id'];
+      $id = $_SESSION['id_session'];
       $QC_school_info = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'school_info'";
       $QR_school_info = "SELECT * FROM school_info WHERE ID = '$id'";
 
@@ -55,10 +62,27 @@ require('conn.php');
       echo "<p style=".'"font-size: 13px;"' .">Faculty: " . $Row_value[6] . "</p>";
        
     ?>
-     <a href="dashboard.php"><button class="edit-btn">&#x1F3E1; Dash Board </button></a>
-    <?php echo '<a href="edit.php?id=' . $id . '"><button class="edit-btn">&#x1F527; Edit Profile </button></a>';?>
-
-   
+    <!-- =================================DASHBOARD  BUTTON================================= -->
+    <?php
+  echo '<form method="GET">';
+  echo '<input class="edit-btn" type="submit" name="dashboard" value = "&#x1F3E1; Dashboard ">';
+  if(isset($_GET["dashboard"])){
+    echo '<meta http-equiv="refresh" content="0;url=dashboard.php">';
+    exit();
+  }
+  echo '</form>';
+  ?>
+      <!-- =================================EDIT BUTTON================================= -->
+  <?php
+  echo '<form method="GET">';
+  echo '<input class="edit-btn" type="submit" name="edit" value = "&#x1F527; Edit Profile ">';
+  if(isset($_GET["edit"])){
+    echo '<meta http-equiv="refresh" content="0;url=edit.php">';
+    exit();
+  }
+  echo '</form>';
+  ?>
+    <!-- =============================================================================== -->
   </div>
 
   <nav class="menu">
@@ -70,9 +94,20 @@ require('conn.php');
   
   </nav>  
   <!-- Thêm khoảng trống trước nút Logout -->
-  <hr style="width: 80%;">
+  <hr style="width: 100%;">
   <br>
- <a href="login.php"> <button class="logout-btn">&#x1F511; Logout </button></a>
+ 
+  <?php
+  echo '<form method="GET">';
+  echo '<input class="logout-btn" type="submit" name="logout" value = "&#x1F511; Logout ">';
+  if(isset($_GET["logout"])){
+    session_destroy();
+    echo '<meta http-equiv="refresh" content="0;url=index.php">';
+    exit();
+  }
+  echo '</form>';
+  ?>
+
 </aside>
     <!-- =================================TOP-BAR============================ -->
     <div class="unique-top-right-bar">
@@ -87,12 +122,11 @@ require('conn.php');
   <div class="unique-user-info">
     
    <?php echo "<span>". $fullname . " - " . $msv ."</span>"; ?>
-   
-    <?php echo '<img src="'. "uploads/".$id.".png" .'" alt="Avatar" class="unique-avatar">'; ?> 
+    
+    <?php echo '<img src="'. $profile_path .'" alt="Avatar" class="unique-avatar">'; ?> 
   </div>
 </div>
     <!-- ======================================================================= -->
-      
 
     <main class="content">
     <section class="personal-info" id="personal-info" >

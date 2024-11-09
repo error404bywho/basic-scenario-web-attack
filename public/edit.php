@@ -2,20 +2,12 @@
 <?php
 session_start();
 if(!isset($_SESSION['id_session'])){
-  echo '<meta http-equiv="refresh" content="0;url=admin.php">';
+  echo '<meta http-equiv="refresh" content="0;url=index.php">';
   exit();
 }
-$id = $_GET['id'];
+$id = $_SESSION['id_session'];
 require('conn.php');
 
-/*
-1. Select all rows's name in db
-- address_info
-- contact_info
-- private_info
-- school_info
-2. Select all in4
-*/
  
 ?>
 <!-- ===========================================PROFILE================================================= -->
@@ -27,6 +19,8 @@ require('conn.php');
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Page</title>
   <link rel="stylesheet" href="assets/css/edit.css">
+  
+
 </head>
 <body>
   
@@ -84,7 +78,6 @@ require('conn.php');
   <!-- =================================================UPLOADS============================================== -->
 
     <?php
- $id = $_GET['id'];
       $QC_school_info = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'school_info'";
       $QR_school_info = "SELECT * FROM school_info WHERE ID = '$id'";
 
@@ -114,7 +107,7 @@ require('conn.php');
     
     <hr style="margin-top: 40px;color : #c6c3c3">
   <?php
-  echo '<a href="Profile.php?id='.$_GET['id'].'"><button class="logout-btn">&#x2B90; Back </button></a>';
+  echo '<a href="Profile.php?id='.$id.'"><button class="logout-btn">&#x2B90; Back </button></a>';
   
   ?>
   </div>
