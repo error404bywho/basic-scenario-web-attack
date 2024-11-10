@@ -151,6 +151,8 @@ body {
     background-color: #f4f6f8;
     
 }
+
+
 .notification:hover {
     background-color: #f4f6f8;
     color: #075cb6f3; /* Transition to blue */
@@ -176,8 +178,8 @@ body {
 }
 
 .course-thumbnail {
-    width: 100%;
-    max-height: 300px; /* Chiều cao tối đa để tránh ảnh quá lớn */
+    width: 50%;
+    max-height: 250px; /* Chiều cao tối đa để tránh ảnh quá lớn */
     object-fit: contain; /* Hiển thị toàn bộ nội dung ảnh */    
     border-radius: 5px;
     margin-bottom: 10px;

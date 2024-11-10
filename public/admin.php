@@ -7,6 +7,7 @@
   <title>Profile Management</title>
   <link rel="stylesheet" href="assets/css/admin.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
   <div class="container">

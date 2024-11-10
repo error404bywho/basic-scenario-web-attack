@@ -2,9 +2,7 @@
 
 /*
 announce - mang 2 chieu :
-1. noi dung
-2. link 
-
+1. noi dung   2. link 
 */
 
 $announce = [

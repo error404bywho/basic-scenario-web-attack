@@ -20,7 +20,7 @@ $fullname = $row['0'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - E-learning</title>
     <link rel="stylesheet" href="assets/css/dashboard.css">
-   
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
    
 </head>
 
@@ -111,17 +111,27 @@ $fullname = $row['0'];
                 <h2>Danh sách khóa học</h2>
                 <div class="course-list">
                     <?php
-                    for ($i = 1; $i <= 8; $i++) {
-                        echo '<div class="course">
-                        <img src="assets\courses\thumbnail\C___Advance_406742908f7f4926873de2591c910e3a (1).png" alt="Thumbnail Khóa học ' . $i . '" class="course-thumbnail">
-                        <h3>Khóa học ' . $i . '</h3>
-                        <p class="course-description">C++ là một trong những ngôn ngữ lập trình mạnh mẽ và linh hoạt nhất, được sử dụng rộng rãi
-                         trong các ứng dụng công nghiệp và phát triển phần mềm cao cấp. Khóa học C++ nâng cao này được
-                          thiết kế để giúp các lập trình viên đã có kiến thức cơ bản về C++ tiếp tục phát triển và nắm 
-                          vững các kỹ thuật nâng cao. Khóa học sẽ đi sâu vào các chủ đề phức tạp hơn, giúp bạn viết mã 
-                          hiệu quả, tối ưu hóa và áp dụng trong các dự án thực tế.</p>
-                        <a href="https://codelearn.io/learning/lap-trinh-cpp-nang-cao" class="course-link">Học ngay!</a>
-                      </div>';
+                    include 'assets/link/room.inc';
+                    // $image = 0;
+                    // $title = 0;
+                    // $description = 0;
+                    // $link = 0;
+                    
+                    for ($i = 0 ; $i < count($room); $i++) {
+                        
+                       
+                        echo '<div class="course">';
+                        //  1. link image        
+                        echo '<img src="' . $room[$i][0];
+                        echo '"alt="Thumbnail Khóa học" class="course-thumbnail">';
+                        //  2. Title 
+                        echo "<h3> " . $room[$i][1] . " </h3>";
+                        //  3. description
+                        echo '<p class="course-description">'.$room[$i][2].'</p>';
+                        //  4. link to post
+                        echo '<a href="'.$room[$i][3].'"class="course-link">Học ngay!</a>';
+                       
+                        echo '</div>';
                     }
                     ?>
                 </div>

@@ -17,6 +17,7 @@ require('conn.php');
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Page</title>
   <link rel="stylesheet" href="assets/css/profile.css">
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
 
 </head>

@@ -16,7 +16,7 @@ if(!isset($row)){
 else {
     $id = $row['ID'];
     $_SESSION['id_session'] = $id;
-    echo '<meta http-equiv="refresh" content="0;url=Profile.php"';
+    echo '<meta http-equiv="refresh" content="0;url=dashboard.php"';
 }
     }
 ?>

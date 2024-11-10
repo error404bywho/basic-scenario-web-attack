@@ -19,7 +19,7 @@ require('conn.php');
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Page</title>
   <link rel="stylesheet" href="assets/css/edit.css">
-  
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 
 </head>
 <body>
