@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  web:
+    image: vku
+    container_name: ubuntu_web
+    working_dir: /var/www/html
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./public:/var/www/html  # Liên kết mã nguồn PHP vào container
+    ports:
+      - "8082:80"            # Chuyển tiếp cổng 8080 của host đến cổng 80 của container
+    depends_on:
+      - db                    # Đảm bảo MySQL đã khởi động trước khi Apache chạy
+    networks:
+      - web-network
+
+  db:
+    image: mysql:5.7
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: '@Root123'             # Đặt mật khẩu cho user root
+      MYSQL_DATABASE: students           # Tên cơ sở dữ liệu mặc định
+      MYSQL_USER: user                    # Tạo người dùng mới
+      MYSQL_PASSWORD: zxc        # Mật khẩu của người dùng mới
+    volumes:
+      - ./data/:/var/lib/mysql             # Thư mục để lưu trữ dữ liệu MySQL
+    networks:
+      - web-network
+      
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: db                        # Kết nối đến dịch vụ 'db' (MySQL)
+      MYSQL_ROOT_PASSWORD: ''             # Đặt mật khẩu root
+    ports:
+      - "8081:80"                         # Truy cập phpMyAdmin trên cổng 8081
+    depends_on:
+      - db
+    networks:
+      - web-network
+
+networks:
+  web-network:
+    driver: bridge

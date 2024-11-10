@@ -184,9 +184,7 @@ require('conn.php');
         </div>
       </section>
       <!-- -->
-
       <section class="personal-info">
-
         <h3>Personal</h3>
         <div class="info-grid">
         <!-- ======================================private-info============================================== -->

@@ -92,10 +92,13 @@ $fullname = $row['0'];
            <!-- Notifications Section -->
            <section class="notifications">
                 <h2>Thông báo</h2>
-                <a href="#" class="notification">Thông báo 1: Tháng này mưa lũ đang cao, các em ở nhà chú ý ăn ngủ no
-                    đủ</a>
-                <a href="#" class="notification">Thông báo 2: Không nhất thiết phải đi học đầy đủ, bảo toàn mạng sống là
-                    trên hết</a>
+                <?php
+                include 'assets/link/announce.inc';
+                for($i = 0; $i < count($announce); $i++){
+                    echo '<a href="'.$announce[$i][1].'" class="notification">' . "$i." . " " . $announce[$i][0] . '</a>'; 
+                }
+                ?>
+                
             </section>
         </aside>
 
