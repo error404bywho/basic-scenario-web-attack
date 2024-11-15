@@ -1,21 +1,33 @@
-# Student Profile Website
+# Ứng dụng Web Bảo Mật Thấp
 
-## Introduction
+## Mô Tả
 
-This document provides a brief overview of the **Student Profile Website**, highlighting critical security vulnerabilities that may expose the application to exploitation. The website allows students to manage personal profiles, upload profile pictures, and view academic information. However, certain security weaknesses may leave it susceptible to malicious attacks. 
+Đây là một ứng dụng web với mức độ bảo mật thấp, được thiết kế để giúp bạn hiểu và nghiên cứu về các lỗ hổng bảo mật phổ biến như SQL Injection, Upload File không an toàn và Command Injection. Ứng dụng này phục vụ mục đích học tập và nâng cao kiến thức về an ninh mạng.
 
-## Potential Vulnerabilities
+## Hướng dẫn Cài đặt
 
-The following vulnerabilities have been identified as risks in the current implementation of the Student Profile Website start from SQL Injection go to RCE all System: 
+1. **Clone dự án từ GitHub**
 
-### 1. SQL Injection
+   ```bash
+   git clone [đường dẫn tới repository]
+Khởi động Docker và chạy dự án
 
-### 3. Path Traversal
+Mở Docker Desktop và trong thư mục dự án, chạy lệnh sau:
 
-### 2. File Upload Vulnerability
+bash
+Sao chép mã
+docker compose up
+Cấu hình cơ sở dữ liệu
 
-### 4. OS Command Injection
+Truy cập http://localhost:8080 trên trình duyệt web.
+Import file dữ liệu vào cơ sở dữ liệu có tên students.
+Truy cập ứng dụng web
 
-## Summary
+Mở trình duyệt và truy cập http://localhost:81 để bắt đầu sử dụng ứng dụng.
 
-The Student Profile Website requires careful attention to input validation and security controls to mitigate these vulnerabilities. Addressing these issues will improve the integrity and safety of student data within the application.
+Lưu ý
+Ứng dụng này chỉ nên được sử dụng cho mục đích học tập và trong môi trường kiểm thử.
+Không sử dụng hoặc triển khai ứng dụng trên môi trường sản xuất hoặc mạng công cộng.
+Hãy đảm bảo tuân thủ các nguyên tắc và quy định về an ninh mạng trong quá trình sử dụng.
+Sao chép mã
+
