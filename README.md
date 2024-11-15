@@ -24,7 +24,7 @@ docker compose up
 
 Truy cập phpmyadmin trên trình duyệt web và import file dữ liệu vào cơ sở dữ liệu có tên students.
 ```bash
-[docker compose up](http://localhost:8080 )
+http://localhost:8080
 ```
 
 4. **Truy cập ứng dụng web**
