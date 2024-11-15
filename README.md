@@ -10,20 +10,22 @@
 ## Hướng dẫn Cài đặt
 
 1. **Clone dự án từ GitHub**
-
 ```bash
 git clone https://github.com/error404bywho/basic-scenario-web-attack.git
 ```
+
 2. **Khởi động Docker và chạy dự án**
 Mở Docker Desktop và trong thư mục dự án, chạy lệnh sau:
-
 ```bash
 docker compose up
 ```
+
 3. **Cấu hình cơ sở dữ liệu**
 
-Truy cập http://localhost:8080 trên trình duyệt web.
-Import file dữ liệu vào cơ sở dữ liệu có tên students.
+Truy cập phpmyadmin trên trình duyệt web và import file dữ liệu vào cơ sở dữ liệu có tên students.
+```bash
+[docker compose up](http://localhost:8080 )
+```
 
 4. **Truy cập ứng dụng web**
 truy cập để bắt đầu sử dụng ứng dụng:
