@@ -6,11 +6,8 @@ if(!isset($_SESSION['id_session'])){
 }
 $id = $_SESSION['id_session'];
 require('conn.php');
-
- 
 ?>
 <!-- ===========================================PROFILE================================================= -->
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -68,7 +65,7 @@ require('conn.php');
       echo "<div style='color : #1dff04;
              margin-top : 10px; margin-left : 20px; margin-bottom: 20px'
             >Cập nhật thành công!</div>";
-            header("Location: " . 'edit.php?id='.$id);
+            echo '<meta http-equiv="refresh" content="0;url=edit.php">';
     } else {
        echo "DBRR";
       }

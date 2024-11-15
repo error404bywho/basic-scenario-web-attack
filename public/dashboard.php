@@ -4,7 +4,7 @@ if(!isset($_SESSION['id_session'])){
     echo '<meta http-equiv="refresh" content="0;url=index.php">';
     exit();
 }
-require 'conn.php';
+include 'conn.php';
 $id = $_SESSION['id_session'];
 $query = "SELECT `Full Name` from `private_info` WHERE id = '$id'";
 $result = mysqli_query($conn,$query);
