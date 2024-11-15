@@ -1,13 +1,14 @@
-
 <?php 
 session_start();
 include 'conn.php';
 if(isset($_POST['student_id']) && isset($_POST['password'])){
 $id =   $_POST['student_id'];
 $password = $_POST['password'];
-$query = "SELECT * FROM account WHERE id = '$id' AND password = '$password'";
+$query = "SELECT * FROM `account` WHERE id = '$id' AND password = '$password'";
 $result = mysqli_query($conn,$query);
+print_r($result);
 $row = mysqli_fetch_array($result);
+print_r($row);
 if(!isset($row)){
     echo '<div><div class="error-message">invalid login, please try again</div></div>';
    // header("Location: admin.php");

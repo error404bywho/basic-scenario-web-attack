@@ -7,7 +7,7 @@ if(!isset($_SESSION['id_session'])){
 require 'conn.php';
 $id = $_SESSION['id_session'];
 $query = "SELECT `Full Name` from `private_info` WHERE id = '$id'";
-$result = mysqli_execute_query($conn,$query);
+$result = mysqli_query($conn,$query);
 $row = $result->fetch_array();
 $fullname = $row['0'];
 ?>
@@ -53,7 +53,7 @@ $fullname = $row['0'];
             
             <div class="dropdown-menu" id="dropdownMenu">
             <?php 
-             echo '<a href="Profile.php?entry=true" class="logout"> <i class="icon icon-logout"></i> Profile</a>';
+             echo '<a href="Profile.php" class="logout"> <i class="icon icon-logout"></i> Profile</a>';
                 echo '<hr>';
                 echo '<a href="index.php?entry=true"><i class="icon icon-profile"></i> Log out</a>';
                 if (isset($_GET['logout'])) {
@@ -93,7 +93,7 @@ $fullname = $row['0'];
            <section class="notifications">
                 <h2>Thông báo</h2>
                 <?php
-                include 'assets/link/announce.inc';
+                include 'assets/link/announce.php';
                 for($i = 0; $i < count($announce); $i++){
                     echo '<a href="'.$announce[$i][1].'" class="notification">' . "$i." . " " . $announce[$i][0] . '</a>'; 
                 }
@@ -111,7 +111,7 @@ $fullname = $row['0'];
                 <h2>Danh sách khóa học</h2>
                 <div class="course-list">
                     <?php
-                    include 'assets/link/room.inc';
+                    include 'assets/link/room.php';
                     // $image = 0;
                     // $title = 0;
                     // $description = 0;

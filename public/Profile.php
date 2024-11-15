@@ -1,4 +1,3 @@
-<!-- =========================PROFILE=============================== -->
 <?php
 session_start();
 if(!isset($_SESSION['id_session'])){
@@ -58,7 +57,7 @@ require('conn.php');
       $msv      = $Row_value[0];
 
       echo "<h2>" . $Row_value[1] . "&#x1F393;</h2>";
-      echo "<p style=".'"font-size: 13px;"' .">MSV " . $Row_value[0] . " | Lớp " . $Row_value[2] . " | Course " . $Row_value[5] . "</p>";
+      echo "<p style=".'"font-size: 13px;"' .">MSV " . $Row_value[0] . " | Class " . $Row_value[2] . " | Course " . $Row_value[5] . "</p>";
       echo "<p style=".'"font-size: 13px;"' .">Major: " . $Row_value[3] . "</p>";
       echo "<p style=".'"font-size: 13px;"' .">Faculty: " . $Row_value[6] . "</p>";
        

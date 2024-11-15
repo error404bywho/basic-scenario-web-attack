@@ -2,47 +2,52 @@ version: '3.8'
 
 services:
   web:
-    image: vku
-    container_name: ubuntu_web
-    working_dir: /var/www/html
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: apache_server
     volumes:
-      - ./public:/var/www/html  # Liên kết mã nguồn PHP vào container
-    ports:
-      - "8082:80"            # Chuyển tiếp cổng 8080 của host đến cổng 80 của container
-    depends_on:
-      - db                    # Đảm bảo MySQL đã khởi động trước khi Apache chạy
-    networks:
-      - web-network
-
-  db:
-    image: mysql:5.7
-    container_name: mysql_db
+      - ./public:/var/www/html
     environment:
-      MYSQL_ROOT_PASSWORD: '@Root123'             # Đặt mật khẩu cho user root
-      MYSQL_DATABASE: students           # Tên cơ sở dữ liệu mặc định
-      MYSQL_USER: user                    # Tạo người dùng mới
-      MYSQL_PASSWORD: zxc        # Mật khẩu của người dùng mới
-    volumes:
-      - ./data/:/var/lib/mysql             # Thư mục để lưu trữ dữ liệu MySQL
+      - DB_HOST=db
+    ports:
+      - "81:80"
+    depends_on:
+      - db
     networks:
-      - web-network
-      
+      - webnet
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
     environment:
-      PMA_HOST: db                        # Kết nối đến dịch vụ 'db' (MySQL)
-      MYSQL_ROOT_PASSWORD: ''             # Đặt mật khẩu root
+      PMA_HOST: db
+      PMA_USER: student
+      PMA_PASSWORD: "@Student123"
     ports:
-      - "8081:80"                         # Truy cập phpMyAdmin trên cổng 8081
+      - "8080:80"
     depends_on:
       - db
     networks:
-      - web-network
+      - webnet
+
+  db:
+    image: mysql:5.7
+    container_name: mysql_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "@Root123"
+      MYSQL_DATABASE: "students"
+      MYSQL_USER: "student"
+      MYSQL_PASSWORD: "@Student123"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - webnet
+
+volumes:
+  db_data:
 
 networks:
-  web-network:
+  webnet:
     driver: bridge
