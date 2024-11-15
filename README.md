@@ -19,7 +19,7 @@ Mở Docker Desktop và trong thư mục dự án, chạy lệnh sau:
 
 bash
    ```bash
-docker compose up
+   docker compose up
    ```
 3. **Cấu hình cơ sở dữ liệu**
 
