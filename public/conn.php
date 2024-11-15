@@ -1,5 +1,5 @@
 <?php 
-$db_host = getenv('DB_HOST');
+$db_host = "localhost";
 $conn = mysqli_connect($db_host,'student','@Student123','students');
 
 
