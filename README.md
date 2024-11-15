@@ -11,23 +11,25 @@
 
 1. **Clone dự án từ GitHub**
 
-   ```bash
-   git clone https://github.com/error404bywho/basic-scenario-web-attack.git
-   
+```bash
+git clone https://github.com/error404bywho/basic-scenario-web-attack.git
+```
 2. **Khởi động Docker và chạy dự án**
 Mở Docker Desktop và trong thư mục dự án, chạy lệnh sau:
 
-bash
-   ```bash
-   docker compose up
-   ```
+```bash
+docker compose up
+```
 3. **Cấu hình cơ sở dữ liệu**
 
 Truy cập http://localhost:8080 trên trình duyệt web.
 Import file dữ liệu vào cơ sở dữ liệu có tên students.
-Truy cập ứng dụng web
 
-4. **Mở trình duyệt và truy cập http://localhost:81 để bắt đầu sử dụng ứng dụng.**
+4. **Truy cập ứng dụng web**
+truy cập để bắt đầu sử dụng ứng dụng:
+```bash
+http://localhost:81 
+```
 
 Lưu ý
 Ứng dụng này chỉ nên được sử dụng cho mục đích học tập và trong môi trường kiểm thử.
