@@ -32,7 +32,7 @@ $fullname = $row['0'];
             <h1 class="header-title">E-learning Dashboard</h1>
         </div>
         <div class="user-menu">
-            <span class="username" onclick="toggleMenu()">Nguyễn Quang Vương</span>
+            <span class="username" onclick="toggleMenu()">  <?php echo $fullname ?> </span>
         <?php
             $path ='uploads/'.$id.'/';
             if(!is_dir($path)){ //neu thu muc khong ton tai thi tao thu muc moi
