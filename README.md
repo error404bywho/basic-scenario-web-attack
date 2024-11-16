@@ -5,8 +5,8 @@
 Đây là một ứng dụng web với mức độ bảo mật siêu tệ, được thiết kế để giúp bạn hiểu và nghiên cứu về các lỗ hổng bảo mật phổ biến như SQL Injection, Upload File không an toàn và Command Injection. Ứng dụng này phục vụ mục đích học tập và nâng cao kiến thức về an ninh mạng. Gồm bốn lỗi cơ bản sau :
 #### SQL Injection : injection mọi ô textbox, textarea xuất hiện trên web
 #### Upload File : Upload đủ file ở đủ nơi có thể upload được
-#### Path Traversal : ../ tới khi nào về thư mục gốc
-#### OS command : Cat /etc/passwd everywhere, everytime
+#### Path Traversal : đọc /etc/passwd mọi lúc 
+#### OS command : ls mọi nơi 
 
 ## Hướng dẫn Cài đặt
 
