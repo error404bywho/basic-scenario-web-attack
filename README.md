@@ -1,21 +1,40 @@
-# Student Profile Website
+# Web Bảo Mật Thấp 
 
-## Introduction
+## Mô Tả
 
-This document provides a brief overview of the **Student Profile Website**, highlighting critical security vulnerabilities that may expose the application to exploitation. The website allows students to manage personal profiles, upload profile pictures, and view academic information. However, certain security weaknesses may leave it susceptible to malicious attacks. 
+Đây là một ứng dụng web với mức độ bảo mật thấp, được thiết kế để giúp bạn hiểu và nghiên cứu về các lỗ hổng bảo mật phổ biến như SQL Injection, Upload File không an toàn và Command Injection. Ứng dụng này phục vụ mục đích học tập và nâng cao kiến thức về an ninh mạng. Gồm ba lỗi cơ bản sau :
+#### SQL Injection : injection mọi ô textbox, textarea xuất hiện trên web
+#### Upload File : Upload đủ file ở đủ nơi có thể upload được
+#### OS command : Cat /etc/passwd everywhere, everytime
 
-## Potential Vulnerabilities
+## Hướng dẫn Cài đặt
 
-The following vulnerabilities have been identified as risks in the current implementation of the Student Profile Website start from SQL Injection go to RCE all System: 
+1. **Clone dự án từ GitHub**
+```bash
+git clone https://github.com/error404bywho/basic-scenario-web-attack.git
+```
 
-### 1. SQL Injection
+2. **Khởi động Docker và chạy dự án**
+Mở Docker Desktop và trong thư mục dự án, chạy lệnh sau:
+```bash
+docker compose up
+```
 
-### 3. Path Traversal
+3. **Cấu hình cơ sở dữ liệu**
 
-### 2. File Upload Vulnerability
+Truy cập phpmyadmin trên trình duyệt web và import file dữ liệu vào cơ sở dữ liệu có tên students.
+```bash
+http://localhost:8080
+```
 
-### 4. OS Command Injection
+4. **Truy cập ứng dụng web**
+truy cập để bắt đầu sử dụng ứng dụng:
+```bash
+http://localhost:81 
+```
 
-## Summary
+Lưu ý
+Ứng dụng này chỉ nên được sử dụng cho mục đích học tập và trong môi trường kiểm thử.
+Không sử dụng hoặc triển khai ứng dụng trên môi trường sản xuất hoặc mạng công cộng.
+Hãy đảm bảo tuân thủ các nguyên tắc và quy định về an ninh mạng trong quá trình sử dụng.
 
-The Student Profile Website requires careful attention to input validation and security controls to mitigate these vulnerabilities. Addressing these issues will improve the integrity and safety of student data within the application.
