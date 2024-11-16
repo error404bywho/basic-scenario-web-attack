@@ -39,9 +39,11 @@ require('conn.php');
         break;
       }
     }
-    echo '<label for="profile-pic-upload" class="profile-pic-label"><img src="'.  $profile_path .'" alt="Profile Picture" class="profile-pic"></label>'; 
+    echo '<a href="' . "view_file.php?file=$profile_path" .'">' . 
+    '<label for="profile-pic-upload" class="profile-pic-label"><img src="'.  $profile_path .
+    '" alt="Profile Picture" class="profile-pic"></label>'.'</a>'; 
     ?>
- 
+  
     <?php
       $id = $_SESSION['id_session'];
       $QC_school_info = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'school_info'";
