@@ -4,7 +4,9 @@ if(isset($_POST['student_id']) && isset($_POST['password'])){
 include 'conn.php';
 $id =   $_POST['student_id'];
 $password = $_POST['password'];
+
 $query = "SELECT * FROM `account` WHERE id = '$id' AND password = '$password'";
+
 $result = mysqli_query($conn,$query);
 // print_r($result);
 $row = mysqli_fetch_array($result);

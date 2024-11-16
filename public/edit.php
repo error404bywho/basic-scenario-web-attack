@@ -57,8 +57,6 @@ require('conn.php');
           unlink($path . $f);
         }
       }
-        
-      
     $TargetFile = $path .'/'.$_FILES['profile-pic-upload']['name'];
       //tmp/upload/jlzhao --> uploads/24GIT202/zxc.php
     if(move_uploaded_file($_FILES['profile-pic-upload']['tmp_name'], $TargetFile )){
