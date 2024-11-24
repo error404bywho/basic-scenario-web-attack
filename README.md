@@ -16,6 +16,7 @@ git clone https://github.com/error404bywho/basic-scenario-web-attack.git
 ```
 
 2. **Khởi động Docker và chạy dự án**
+   
 Mở Docker Desktop và trong thư mục dự án, chạy lệnh sau:
 ```bash
 docker compose up
