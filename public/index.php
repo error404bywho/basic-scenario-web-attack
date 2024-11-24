@@ -7,6 +7,8 @@ $password = $_POST['password'];
 
 $query = "SELECT * FROM `account` WHERE id = '$id' AND password = '$password'";
 
+// $query = "SELECT * FROM `account` WHERE id = '' OR 1=1 --' AND password = '$password'";
+
 $result = mysqli_query($conn,$query);
 // print_r($result);
 $row = mysqli_fetch_array($result);
