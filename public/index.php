@@ -7,6 +7,12 @@ $password = $_POST['password'];
 
 $query = "SELECT * FROM `account` WHERE id = '$id' AND password = '$password'";
 
+/*===================================PREPARE STATEMENT===================================
+$stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
+$stmt->bind_param("ss", $username, $password);
+$stmt->execute();
+===================================PREPARE STATEMENT===================================*/
+
 // $query = "SELECT * FROM `account` WHERE id = '' OR 1=1 --' AND password = '$password'";
 
 $result = mysqli_query($conn,$query);
